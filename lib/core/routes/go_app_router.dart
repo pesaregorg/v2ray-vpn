@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:v2ray_vpn/core/logging/logger_provider.dart';
 import 'package:v2ray_vpn/core/routes/my_route_observer.dart';
 import 'package:v2ray_vpn/core/routes/route_name.dart';
+import 'package:v2ray_vpn/core/widgets/error_page.dart';
 import 'package:v2ray_vpn/features/home/presentation/pages/home_page.dart';
 import 'package:v2ray_vpn/features/settings/presentation/pages/settings_page.dart';
 import 'package:v2ray_vpn/features/splash/presentation/pages/splash_page.dart';
@@ -38,6 +39,8 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           ),
         ]
       ),
-    ]
+    ],
+
+    errorPageBuilder: (context, state) => const MaterialPage(child: ErrorPage()),
   );
 });

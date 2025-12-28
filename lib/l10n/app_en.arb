@@ -1,3 +1,7 @@
 {
-  "appName": "V2Ray VPN"
+  "appName": "V2Ray VPN",
+  "anUnknownErrorHasOccurred": "An unknown error has occurred.",
+  "addConfig": "Add config",
+  "addFromClipboard": "Add from clipboard",
+  "close": "Close"
 }

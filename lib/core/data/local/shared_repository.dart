@@ -1,4 +1,4 @@
-abstract class StorageService {
+abstract class SharedRepository {
   void init();
 
   bool get hasInitialized;

@@ -10,4 +10,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get appName => 'V2Ray VPN';
+
+  @override
+  String get anUnknownErrorHasOccurred => 'An unknown error has occurred.';
+
+  @override
+  String get addConfig => 'Add config';
+
+  @override
+  String get addFromClipboard => 'Add from clipboard';
+
+  @override
+  String get close => 'Close';
 }

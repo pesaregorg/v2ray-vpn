@@ -6,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.dart';
+import 'app_localizations_fa.dart';
 
 // ignore_for_file: type=lint
 
@@ -92,13 +93,40 @@ abstract class AppLocalizations {
       ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('en')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('en'),
+    Locale('fa'),
+  ];
 
   /// No description provided for @appName.
   ///
   /// In en, this message translates to:
   /// **'V2Ray VPN'**
   String get appName;
+
+  /// No description provided for @anUnknownErrorHasOccurred.
+  ///
+  /// In en, this message translates to:
+  /// **'An unknown error has occurred.'**
+  String get anUnknownErrorHasOccurred;
+
+  /// No description provided for @addConfig.
+  ///
+  /// In en, this message translates to:
+  /// **'Add config'**
+  String get addConfig;
+
+  /// No description provided for @addFromClipboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Add from clipboard'**
+  String get addFromClipboard;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
 }
 
 class _AppLocalizationsDelegate
@@ -112,7 +140,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en'].contains(locale.languageCode);
+      <String>['en', 'fa'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -123,6 +151,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   switch (locale.languageCode) {
     case 'en':
       return AppLocalizationsEn();
+    case 'fa':
+      return AppLocalizationsFa();
   }
 
   throw FlutterError(

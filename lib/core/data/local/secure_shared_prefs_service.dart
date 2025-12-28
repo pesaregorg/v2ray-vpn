@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:v2ray_vpn/core/data/local/storage_service.dart';
+import 'package:v2ray_vpn/core/data/local/shared_repository.dart';
 
-class SecureSharedPrefsService implements StorageService {
+class SecureSharedPrefsService implements SharedRepository {
   FlutterSecureStorage? sharedPreferences;
 
   AndroidOptions _getAndroidOptions() =>
