@@ -7,8 +7,8 @@ import 'package:v2ray_vpn/features/home/data/models/config_model.dart';
 abstract class ConfigLocalDatasource {
   Future<Either<AppException, ConfigModel>> create(Map<String, dynamic> data);
   Future<Either<AppException, List<ConfigModel>>> index();
-  Future<Either<AppException, bool>> selected(ConfigModel config);
-  Future<Either<AppException, bool>> delete(ConfigModel config);
+  Future<Either<AppException, bool>> selected(int configId);
+  Future<Either<AppException, bool>> delete(int configId);
 }
 
 
@@ -23,18 +23,51 @@ class ConfigLocalDatasourceImpl implements ConfigLocalDatasource {
     try {
       final db = await _databaseService.database;
 
-      await db.insert(_databaseService.tableConfigsName, data);
+      await db.query(
+        _databaseService.tableConfigsName,
+        where: 'text = ?',
+        whereArgs: [data['text']],
+      ).then((value) async {
+        if (value.isNotEmpty) {
+          await db.delete(
+            _databaseService.tableConfigsName,
+            where: 'text = ?',
+            whereArgs: [data['text']],
+          );
+        }
+      });
 
-      return Right(ConfigModel.fromJson(data));
+      final int id = await db.insert(
+        _databaseService.tableConfigsName,
+        data,
+      );
+
+      final model = ConfigModel.fromJson({
+        ...data,
+        'id': id,
+      });
+
+      return Right(model);
     } catch (e) {
       return Left(CacheException(message: e.toString()));
     }
   }
 
   @override
-  Future<Either<AppException, bool>> delete(ConfigModel config) {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Future<Either<AppException, bool>> delete(int configId) async{
+    try {
+      final db = await _databaseService.database;
+
+      await db.delete(
+        _databaseService.tableConfigsName,
+        where: 'id = ?',
+        whereArgs: [configId],
+      );
+
+      return Right(true);
+    } catch (e) {
+      return Left(CacheException(message: e.toString()));
+    }
   }
 
   @override
@@ -53,9 +86,40 @@ class ConfigLocalDatasourceImpl implements ConfigLocalDatasource {
   }
 
   @override
-  Future<Either<AppException, bool>> selected(ConfigModel config) {
-    // TODO: implement selected
-    throw UnimplementedError();
+  Future<Either<AppException, bool>> selected(int configId) async{
+    try {
+      final db = await _databaseService.database;
+
+      await db.query(
+        _databaseService.tableConfigsName,
+        where: 'selected = ?',
+        whereArgs: [1],
+      ).then((value) async {
+        if (value.isNotEmpty) {
+          await db.update(
+            _databaseService.tableConfigsName,
+            {
+              'selected': 0,
+            },
+            where: 'id = ?',
+            whereArgs: [value.first['id']],
+          );
+        }
+      });
+
+      await db.update(
+        _databaseService.tableConfigsName,
+        {
+          'selected': 1,
+        },
+        where: 'id = ?',
+        whereArgs: [configId],
+      );
+
+      return Right(true);
+    } catch (e) {
+      return Left(CacheException(message: e.toString()));
+    }
   }
 
 }

@@ -7,7 +7,7 @@ part 'config_model.g.dart';
 @JsonSerializable(explicitToJson: true)
 class ConfigModel extends Equatable{
   @JsonKey(required: true)
-  final String id;
+  final int id;
   @JsonKey(required: true)
   final String text;
   @JsonKey(required: true)
@@ -35,7 +35,7 @@ class ConfigModel extends Equatable{
     String? address,
     String? remark,
     int? selected,
-    String? id
+    int? id
   }) {
     return ConfigModel(
       id: id ?? this.id,

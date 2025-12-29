@@ -46,6 +46,7 @@ dependencies:
   path: ^1.9.1
   equatable: ^2.0.7
   dartz: ^0.10.1
+  toastification: ^3.0.3
 
 dev_dependencies:
   flutter_test:

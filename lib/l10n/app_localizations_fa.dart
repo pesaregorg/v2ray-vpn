@@ -22,4 +22,16 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get close => 'بستن';
+
+  @override
+  String get checkPing => 'بررسی پینگ همه';
+
+  @override
+  String get connect => 'اتصال';
+
+  @override
+  String get disconnect => 'متصل نیست';
+
+  @override
+  String get connected => 'متصل است';
 }

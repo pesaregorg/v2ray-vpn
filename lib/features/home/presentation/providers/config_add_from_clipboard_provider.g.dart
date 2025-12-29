@@ -38,7 +38,7 @@ final class ConfigAddFromClipboardPCProvider
 }
 
 String _$configAddFromClipboardPCHash() =>
-    r'1b31bba619f92c26bcef1c67f37a9b6e172ec337';
+    r'0b1d09718b3be1538bb3c977b7aaceaaba14d6ae';
 
 abstract class _$ConfigAddFromClipboardPC
     extends $AsyncNotifier<ConfigAddFromClipboardState> {

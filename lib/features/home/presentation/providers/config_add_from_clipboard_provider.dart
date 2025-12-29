@@ -4,6 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:v2ray_vpn/core/logging/logger.dart';
 import 'package:v2ray_vpn/core/logging/logger_provider.dart';
 import 'package:v2ray_vpn/features/home/domain/usecases/config_usecases.dart';
+import 'package:v2ray_vpn/features/home/presentation/providers/config_index_provider.dart';
 import 'package:v2ray_vpn/features/home/presentation/providers/states/config_add_from_clipboard_state.dart';
 
 part 'config_add_from_clipboard_provider.g.dart';
@@ -22,13 +23,17 @@ class ConfigAddFromClipboardPC extends _$ConfigAddFromClipboardPC {
 
 
   Future<void> addConfigFromClipboard() async{
-    if (!state.hasValue) return;
-    state = AsyncData(state.value!.copyWith(
-        isLoading: true
-    ));
+
     try{
 
-      final text = (await Clipboard.getData('text/plain'))?.text?.trim() ?? '';
+      if (!state.hasValue) return;
+      state = AsyncData(state.value!.copyWith(
+          isLoading: true
+      ));
+
+      final clipboardData = await Clipboard.getData('text/plain');
+      if (!ref.mounted) return;
+      final text = clipboardData?.text?.trim() ?? '';
       final FlutterVlessURL parsed = FlutterVless.parseFromURL(text);
       Map<String, dynamic> data = {
         "url": parsed.url,
@@ -47,10 +52,20 @@ class ConfigAddFromClipboardPC extends _$ConfigAddFromClipboardPC {
               isSuccess: false,
               errorMessage: left.message
           )),
-              (right) => state = AsyncData(state.value!.copyWith(
-              isLoading: false,
-              config: right
-          ))
+              (right) async{
+                state = AsyncData(state.value!.copyWith(
+                    isLoading: false,
+                    isSuccess: true,
+                    errorMessage: null,
+                    config: right
+                ));
+
+                if(state.value!.config != null){
+                  final configIndexNotifier = ref.read(configIndexPCProvider.notifier);
+                  configIndexNotifier.addAfterCreate(state.value!.config!);
+                }
+
+              }
       );
     }catch(e){
       _logger.e("ConfigAddFromClipboardPC.addConfigFromClipboard: $e");
@@ -58,7 +73,7 @@ class ConfigAddFromClipboardPC extends _$ConfigAddFromClipboardPC {
           isLoading: false,
           config: null,
           isSuccess: false,
-          errorMessage: "Unknown Error."
+          errorMessage: e.toString()
       ));
     }
 

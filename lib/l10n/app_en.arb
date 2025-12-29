@@ -3,5 +3,9 @@
   "anUnknownErrorHasOccurred": "An unknown error has occurred.",
   "addConfig": "Add config",
   "addFromClipboard": "Add from clipboard",
-  "close": "Close"
+  "close": "Close",
+  "checkPing": "Check all ping",
+  "connect": "Connect",
+  "disconnect": "Disconnect",
+  "connected": "Connected"
 }

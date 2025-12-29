@@ -3,5 +3,9 @@
   "anUnknownErrorHasOccurred": "خطای ناشناخته ای رخ داده است.",
   "addConfig": "افزودن کانفیگ",
   "addFromClipboard": "افزودن از کلیپ برد",
-  "close": "بستن"
+  "close": "بستن",
+  "checkPing": "بررسی پینگ همه",
+  "connect": "اتصال",
+  "disconnect": "متصل نیست",
+  "connected": "متصل است"
 }

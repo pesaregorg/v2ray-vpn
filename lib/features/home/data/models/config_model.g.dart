@@ -12,7 +12,7 @@ ConfigModel _$ConfigModelFromJson(Map<String, dynamic> json) {
     requiredKeys: const ['id', 'text', 'url', 'address', 'remark', 'selected'],
   );
   return ConfigModel(
-    id: json['id'] as String,
+    id: (json['id'] as num).toInt(),
     url: json['url'] as String,
     address: json['address'] as String,
     remark: json['remark'] as String,

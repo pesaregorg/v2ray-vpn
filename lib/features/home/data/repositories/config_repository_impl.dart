@@ -20,9 +20,10 @@ class ConfigRepositoryImpl extends ConfigRepository{
   }
 
   @override
-  Future<Either<AppException, bool>> delete(ConfigEntity config) {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Future<Either<AppException, bool>> delete(ConfigEntity config) async{
+    var result =  await _configLocalDatasource.delete(config.id);
+
+    return result.fold((l) => Left(l), (r) => Right(true));
   }
 
   @override
@@ -33,9 +34,10 @@ class ConfigRepositoryImpl extends ConfigRepository{
   }
 
   @override
-  Future<Either<AppException, bool>> selected(ConfigEntity config) {
-    // TODO: implement selected
-    throw UnimplementedError();
+  Future<Either<AppException, bool>> selected(ConfigEntity config) async{
+    var result =  await _configLocalDatasource.selected(config.id);
+
+    return result.fold((l) => Left(l), (r) => Right(true));
   }
 
 

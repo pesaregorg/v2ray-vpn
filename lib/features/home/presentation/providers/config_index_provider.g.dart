@@ -33,7 +33,7 @@ final class ConfigIndexPCProvider
   ConfigIndexPC create() => ConfigIndexPC();
 }
 
-String _$configIndexPCHash() => r'bec6d39efdef60970a199e1cbf63fafc154a04e3';
+String _$configIndexPCHash() => r'94701cc976f17bdcb89f13a6f0063a0c8393cc2d';
 
 abstract class _$ConfigIndexPC extends $AsyncNotifier<List<ConfigEntity>> {
   FutureOr<List<ConfigEntity>> build();
