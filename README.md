@@ -13,7 +13,7 @@ It supports adding VLESS configurations, storing them locally, connecting/discon
 ---
 
 ### Features
-- ✅ Add VLESS configurations
+- ✅ Add VLESS configurations (Vless/Vmess/Shadowsocks/Trojan/Socks5 supported)
 - 💾 Store configurations locally using **SQLite (sqflite)**
 - 🔌 Connect / Disconnect to V2Ray servers
 - 📡 Ping all servers concurrently
