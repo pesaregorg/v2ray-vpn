@@ -3,8 +3,6 @@
 
 ---
 
-## 🇬🇧 English
-
 ### Overview
 This project is a **Flutter-based V2Ray client** built using the  
 [`flutter_vless`](https://pub.dev/packages/flutter_vless) package.
@@ -27,30 +25,36 @@ It supports adding VLESS configurations, storing them locally, connecting/discon
 
 ### Project Structure (Clean Architecture)
 
+````
 lib/
 ├── core/
-│ ├── errors/
-│ ├── logging/
-│ └── database/
+│   ├── errors/
+│   ├── logging/
+│   ├── routes/
+│   ├── domains/
+│   ├── theme/
+│   ├── utils/
+│   └── data/
 │
 ├── features/
-│ └── home/
-│ ├── domain/
-│ │ ├── entities/
-│ │ ├── repositories/
-│ │ └── usecases/
-│ │
-│ ├── data/
-│ │ ├── datasources/
-│ │ ├── models/
-│ │ └── repositories/
-│ │
-│ └── presentation/
-│ ├── pages/
-│ ├── components/
-│ └── providers/
+│   └── home/
+│       ├── domain/
+│       │   ├── entities/
+│       │   ├── repositories/
+│       │   └── usecases/
+│       │
+│       ├── data/
+│       │   ├── datasources/
+│       │   ├── models/
+│       │   └── repositories/
+│       │
+│       └── presentation/
+│           ├── pages/
+│           ├── components/
+│           └── providers/
 │
 └── main.dart
+````
 
 ### Architecture Layers
 
