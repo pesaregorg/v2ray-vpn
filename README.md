@@ -55,48 +55,6 @@ lib/
 │
 └── main.dart
 ````
-
-### Architecture Layers
-
-#### Domain Layer
-- Contains **Entities**, **Use Cases**, and **Repository interfaces**
-- Fully independent of Flutter and external packages
-
-#### Data Layer
-- Handles data sources (SQLite via `sqflite`)
-- Maps raw data to domain entities
-- Implements repository interfaces
-
-#### Presentation Layer
-- UI components
-- Riverpod providers
-- Handles user interactions and application state
-
----
-
-### State Management
-- Built with **Riverpod**
-- Uses `Notifier` and `AsyncNotifier`
-- Providers are auto-disposed where applicable
-- Async lifecycle safety handled via `ref.mounted`
-
----
-
-### Local Database
-- Implemented using **sqflite**
-- Auto-increment primary keys
-- Stores VLESS configurations
-- Only one configuration can be selected at a time
-
----
-
-### Ping System
-- Ping all servers concurrently using `Future.wait`
-- Servers with negative or failed ping results are pushed to the bottom
-- Sorted by lowest latency first
-
----
-
 ### Dependencies
 - Flutter
 - Riverpod
